@@ -4,7 +4,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,9 +42,18 @@ public class MainActivity extends AppCompatActivity {
             expListView.expandGroup(i);
 
 
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+
+                Toast.makeText(getApplicationContext(), "Group:  " + groupPosition + "Child Element: " + childPosition, Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+        });
     }
-
-
 
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
